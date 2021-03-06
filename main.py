@@ -32,16 +32,16 @@ def start_timer():
     global reps
     reps += 1
 
-    work_sec = WORK_MIN
-    short_break_sec = SHORT_BREAK_MIN
-    long_break_sec = LONG_BREAK_MIN
+    work_sec = WORK_MIN * 60
+    short_break_sec = SHORT_BREAK_MIN * 60
+    long_break_sec = LONG_BREAK_MIN * 60
 
     if reps % 2 != 0 and reps < 8:
         # Work Session
         focus_window("off")
         count_down(work_sec)
         title.config(text="Work", fg=GREEN)
-    elif reps >= 8:
+    elif reps == 8:
         # Long Break Session
         focus_window("on")
         count_down(long_break_sec)
@@ -51,6 +51,9 @@ def start_timer():
         focus_window("on")
         count_down(short_break_sec)
         title.config(text="Break", fg=PINK)
+    elif reps > 8:
+        focus_window("on")
+        title.config(text="Great Job!", fg=GREEN)
 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
