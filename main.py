@@ -18,6 +18,7 @@ timer = None
 # ---------------------------- TIMER RESET ------------------------------- # 
 
 def reset():
+    # Resets the window setup and timer function
     global reps
     window.after_cancel(timer)
     canvas.itemconfig(timer_text, text="00:00")
@@ -29,6 +30,7 @@ def reset():
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 
 def start_timer():
+    # Starts the timer and round counting
     global reps
     reps += 1
 
@@ -59,6 +61,7 @@ def start_timer():
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
 
 def count_down(count):
+    # Contains the countdown logic
     count_min = math.floor(count / 60)
     count_sec = count % 60
 
@@ -68,6 +71,7 @@ def count_down(count):
         timer = window.after(1000, count_down, count - 1)
     else:
         start_timer()
+        # Track the number of completed cycles
         marks = "✔"
         work_sessions = reps // 2
         marks *= work_sessions
@@ -77,6 +81,7 @@ def count_down(count):
 # ---------------------------- WINDOW FOCUS ------------------------------- #
 
 def focus_window(option):
+    # Brings window to front even if minimized
     if option == "on":
         window.deiconify()
         window.focus_force()
